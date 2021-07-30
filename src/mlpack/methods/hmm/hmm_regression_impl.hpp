@@ -16,6 +16,7 @@
 
 // Just in case...
 #include "hmm_regression.hpp"
+#include "boost/container/small_vector.hpp"
 
 namespace mlpack {
 namespace hmm {
@@ -23,7 +24,7 @@ namespace hmm {
 void HMMRegression::Train(const std::vector<arma::mat>& predictors,
                           const std::vector<arma::vec>& responses)
 {
-  std::vector<arma::mat> dataSeq;
+  boost::container::small_vector<arma::mat,6> dataSeq;
   StackData(predictors, responses, dataSeq);
   this->HMM::Train(dataSeq);
 }
@@ -32,7 +33,7 @@ void HMMRegression::Train(const std::vector<arma::mat>& predictors,
                           const std::vector<arma::vec>& responses,
                           const std::vector<arma::Row<size_t> >& stateSeq)
 {
-  std::vector<arma::mat> dataSeq;
+  boost::container::small_vector<arma::mat,6> dataSeq;
   StackData(predictors, responses, dataSeq);
   this->HMM::Train(dataSeq, stateSeq);
 }

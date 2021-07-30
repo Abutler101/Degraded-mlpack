@@ -15,6 +15,7 @@
 // In case it hasn't been included yet.
 #include "hoeffding_tree.hpp"
 #include <stack>
+#include "boost/container/stable_vector.hpp"
 
 namespace mlpack {
 namespace tree {
@@ -968,7 +969,7 @@ void HoeffdingTree<
       // know how long they will be.  Therefore, we will create vectors each of
       // size data.n_cols, but will probably not use all the memory we
       // allocated, and then pass subvectors to the submat() function.
-      std::vector<arma::uvec> indices(children.size(), arma::uvec(data.n_cols));
+      boost::container::stable_vector<arma::uvec> indices(children.size(), arma::uvec(data.n_cols));
       arma::Col<size_t> counts =
           arma::zeros<arma::Col<size_t>>(children.size());
 

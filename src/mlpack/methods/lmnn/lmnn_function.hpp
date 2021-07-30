@@ -17,6 +17,7 @@
 #include <mlpack/core/metrics/lmetric.hpp>
 
 #include "constraints.hpp"
+#include "boost/container/small_vector.hpp"
 
 namespace mlpack {
 namespace lmnn {
@@ -227,9 +228,9 @@ class LMNNFunction
   //! Holds previous transformation matrix. Used for L-BFGS like optimizer.
   arma::mat transformationOld;
   //! Holds previous transformation matrices.
-  std::vector<arma::mat> oldTransformationMatrices;
+  boost::container::small_vector<arma::mat,5> oldTransformationMatrices;
   //! Holds number of points which are using each transformation matrix.
-  std::vector<size_t> oldTransformationCounts;
+  boost::container::small_vector<size_t,5> oldTransformationCounts;
   //! Holds points to transformation matrix mapping.
   arma::vec lastTransformationIndices;
   //! Used for storing points to re-calculate impostors for.

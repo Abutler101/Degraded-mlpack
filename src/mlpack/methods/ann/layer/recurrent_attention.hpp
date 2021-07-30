@@ -22,6 +22,7 @@
 #include "layer_types.hpp"
 #include "add_merge.hpp"
 #include "sequential.hpp"
+#include "boost/container/stable_vector.hpp"
 
 namespace mlpack {
 namespace ann /** Artificial Neural Network. */ {
@@ -215,7 +216,7 @@ class RecurrentAttention
   OutputParameterVisitor outputParameterVisitor;
 
   //! Locally-stored feedback output parameters.
-  std::vector<arma::mat> feedbackOutputParameter;
+  boost::container::stable_vector<arma::mat> feedbackOutputParameter;
 
   //! List of all module parameters for the backward pass (BBTT).
   std::vector<arma::mat> moduleOutputParameter;

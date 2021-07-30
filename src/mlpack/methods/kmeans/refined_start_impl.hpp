@@ -16,6 +16,7 @@
 
 // In case it hasn't been included yet.
 #include "refined_start.hpp"
+#include "boost/container/small_vector.hpp"
 
 namespace mlpack {
 namespace kmeans {
@@ -30,7 +31,7 @@ void RefinedStart::Cluster(const MatType& data,
   const size_t numPoints = size_t(percentage * data.n_cols);
   MatType sampledData(data.n_rows, numPoints);
   // vector<bool> is packed so each bool is 1 bit.
-  std::vector<bool> pointsUsed(data.n_cols, false);
+  boost::container::small_vector<bool,6> pointsUsed(data.n_cols, false);
   arma::mat sampledCentroids(data.n_rows, samplings * clusters);
 
   for (size_t i = 0; i < samplings; ++i)

@@ -31,6 +31,7 @@
 
 #include "layer_types.hpp"
 #include <algorithm>
+#include "boost/container/stable_vector.hpp"
 
 namespace mlpack {
 namespace ann /** Artificial Neural Network. */ {
@@ -426,7 +427,7 @@ class Glimpse
   MeanPoolingRule pooling;
 
   //! Location-stored module location parameter.
-  std::vector<arma::mat> locationParameter;
+  boost::container::stable_vector<arma::mat> locationParameter;
 
   //! Location-stored transformed gradient paramter.
   arma::cube gTemp;

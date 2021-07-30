@@ -15,6 +15,7 @@
 
 #include "dt_utils.hpp"
 #include <mlpack/core/tree/enumerate_tree.hpp>
+#include "boost/container/small_vector.hpp"
 
 namespace mlpack {
 namespace det {
@@ -147,7 +148,7 @@ DTree<MatType, TagType>* Trainer(MatType& dataset,
   Timer::Start("pruning_sequence");
 
   // Sequentially prune and save the alpha values and the values of c_t^2 * r_t.
-  std::vector<std::pair<double, double> > prunedSequence;
+  boost::container::small_vector<std::pair<double, double>,5 > prunedSequence;
   while (dtree->SubtreeLeaves() > 1)
   {
     std::pair<double, double> treeSeq(oldAlpha,

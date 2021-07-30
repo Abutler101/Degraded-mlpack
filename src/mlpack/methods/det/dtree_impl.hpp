@@ -14,6 +14,7 @@
 #include "dtree.hpp"
 #include <stack>
 #include <vector>
+#include "boost/container/small_vector.hpp"
 
 using namespace mlpack;
 using namespace det;
@@ -102,7 +103,7 @@ void ExtractSplits(std::vector<std::pair<ElemType, size_t>>& splitVec,
 
   // Construct a vector of values.
   const arma::SpRow<ElemType> row = data(dim, arma::span(start, end - 1));
-  std::vector<ElemType> valsVec(row.begin(), row.end());
+  boost::container::small_vector<ElemType,5> valsVec(row.begin(), row.end());
 
   // ... and sort it!
   std::sort(valsVec.begin(), valsVec.end());

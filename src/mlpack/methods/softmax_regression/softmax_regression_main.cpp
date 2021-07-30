@@ -17,6 +17,7 @@
 
 #include <memory>
 #include <set>
+#include <unordered_set>
 
 using namespace std;
 using namespace mlpack;
@@ -179,7 +180,7 @@ size_t CalculateNumberOfClasses(const size_t numClasses,
 {
   if (numClasses == 0)
   {
-    const set<size_t> unique_labels(begin(trainLabels),
+    const unordered_set<size_t> unique_labels(begin(trainLabels),
                                     end(trainLabels));
     return unique_labels.size();
   }

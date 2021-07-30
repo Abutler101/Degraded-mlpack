@@ -25,7 +25,7 @@
 #include "visitor/gradient_visitor.hpp"
 #include "visitor/weight_set_visitor.hpp"
 #include "visitor/run_set_visitor.hpp"
-
+#include "boost/container/small_vector.hpp"
 namespace mlpack {
 namespace ann /** Artificial Neural Network. */ {
 
@@ -483,7 +483,7 @@ EvaluateWithGradient(const arma::mat& /* parameters */,
 
   // Calculate and storing delta parameters from output for t = 1 to T.
   arma::mat delta;
-  std::vector<arma::mat> allDelta;
+  boost::container::small_vector<arma::mat,6> allDelta;
 
   for (size_t seqNum = 0; seqNum < rho; ++seqNum)
   {

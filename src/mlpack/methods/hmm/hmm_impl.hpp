@@ -17,6 +17,8 @@
 // Just in case...
 #include "hmm.hpp"
 #include <mlpack/core/math/log_add.hpp>
+#include "boost/container/small_vector.hpp"
+#include "boost/container/stable_vector.hpp"
 
 namespace mlpack {
 namespace hmm {
@@ -115,7 +117,7 @@ double HMM<Distribution>::Train(const std::vector<arma::mat>& dataSeq)
 
   // These are used later for training of each distribution.  We initialize it
   // all now so we don't have to do any allocation later on.
-  std::vector<arma::vec> emissionProb(logTransition.n_cols,
+  boost::container::small_vector<arma::vec,6> emissionProb(logTransition.n_cols,
       arma::vec(totalLength));
   arma::mat emissionList(dimensionality, totalLength);
 
@@ -265,7 +267,7 @@ void HMM<Distribution>::Train(const std::vector<arma::mat>& dataSeq,
   // Estimate the transition and emission matrices directly from the
   // observations.  The emission list holds the time indices for observations
   // from each state.
-  std::vector<std::vector<std::pair<size_t, size_t> > >
+  boost::container::stable_vector<std::vector<std::pair<size_t, size_t> > >
       emissionList(transition.n_cols);
   for (size_t seq = 0; seq < dataSeq.size(); seq++)
   {
